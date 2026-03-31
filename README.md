@@ -76,7 +76,7 @@ git submodule update --init
 
 ---
 
-![running_settings](img\running_settings.png)
+![running_settings](./assets/images/running_settings.png)
 
 *（上图示意了在 IDE 中如何选择不同子模块的运行配置）
 
