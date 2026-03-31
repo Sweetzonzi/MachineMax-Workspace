@@ -69,18 +69,22 @@ git submodule update --init
 2. **选择运行配置**：同步完成后，在您的 IDE（如 IntelliJ IDEA）中，您需要**选择要运行的具体模组**。
    
    * 通常，Gradle 会为每个子模块生成独立的运行配置（Run Configuration）。
-   * 请在 IDE 的运行配置下拉菜单中，选择您想要调试或测试的模组，例如 `Machine-Max - Client` 或 `Spark-Core - Client`（运行客户端）或 `runData`（运行数据生成）等任务。
+   * 请在 Gradle 的运行配置下拉菜单中，选择您想要调试或测试的模组，例如 `runClient`（运行客户端）或 `runData`（运行数据生成）等任务。
      最后，记得选择你需要运行的mod
+     <br><img src="./assets/images/mm_runclient.png" alt="正确的运行配置选择" style="width: 100%; max-width: 460px;"><br>
+   * 请不要使用IDE自动生成的运行配置，它们现在有参数配置bug
+   * <br><img src="./assets/images/running_settings_dont_use.png" alt="暂时不能使用的运行配置" style="width: 100%; max-width: 460px; border: 1px solid #ddd; border-radius: 4px;"><br>
 
+
+
+## 构建
+如果您希望将工程打包进行模组发布，强烈建议使用Gradle根工程的build
+<br><img src="./assets/images/workspace_build.png" alt="Gradle构建任务" style="width: 100%; max-width: 460px; border: 1px solid #ddd; border-radius: 4px;"><br>
 ---
 
+<br><img src="./assets/images/workspace_build_result.png" alt="构建结果文件" style="width: 100%; max-width: 760px; border: 1px solid #ddd; border-radius: 4px;"><br>
 ---
-
-![running_settings](./assets/images/running_settings.png)
-
-*（上图示意了在 IDE 中如何选择不同子模块的运行配置）
-
-
+运行完毕，所有包都可以在根工程的build/libs文件夹中找到。除去根工程无效的空包 MachineMax-Workspace.jar，其他都是你的模组内容或附属包
 
 ## 贡献指南
 
