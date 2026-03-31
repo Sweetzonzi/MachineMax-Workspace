@@ -10,11 +10,11 @@ tasks.named('wrapper', Wrapper).configure {
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 neoForge {
-    version = project.neo_version
+    version = project.workspace_neo_version
 
     parchment {
-        mappingsVersion = project.parchment_mappings_version
-        minecraftVersion = project.parchment_minecraft_version
+        mappingsVersion = project.workspace_parchment_mappings_version
+        minecraftVersion = project.workspace_parchment_minecraft_version
     }
 
     runs {
