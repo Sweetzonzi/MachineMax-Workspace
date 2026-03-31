@@ -10,11 +10,11 @@ tasks.named('wrapper', Wrapper).configure {
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 neoForge {
-    version = project.workspace_neo_version
+    version = project.neo_version
 
     parchment {
-        mappingsVersion = project.workspace_parchment_mappings_version
-        minecraftVersion = project.workspace_parchment_minecraft_version
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
     }
 
     runs {
@@ -67,8 +67,7 @@ tasks.withType(ProcessResources).configureEach {
             mod_version            : mod_version,
             mod_authors            : mod_authors,
             mod_credits            : mod_credits,
-            mod_description        : mod_description,
-            kotlinforforge_version : kotlinforforge_version
+            mod_description        : mod_description
     ]
     inputs.properties replaceProperties
     filesMatching(['META-INF/neoforge.mods.toml']) {
