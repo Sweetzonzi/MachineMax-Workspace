@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/Machine-Max/MachineMax-Workspace.Machine-Max.main.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/Machine-Max/MachineMax-Workspace.Machine-Max.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/Spark-Core/MachineMax-Workspace.Spark-Core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/Spark-Core/MachineMax-Workspace.Spark-Core.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MachineMax-Workspace.main.iml" filepath="$PROJECT_DIR$/.idea/modules/MachineMax-Workspace.main.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,9 @@
+[submodule "modules/Machine-Max"]
+	path = modules/Machine-Max
+	url = https://github.com/Sweetzonzi/Machine-Max.git
+	branch = 1.21.1Dev
+
+[submodule "modules/Spark-Core"]
+	path = modules/Spark-Core
+	url = https://github.com/SolarMoonQAQ/Spark-Core.git
+	branch = 1.21.1-neoforge-reloadlistener
