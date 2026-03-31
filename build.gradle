@@ -121,3 +121,34 @@ dependencies {
     implementation(project(':Spark-Core'))
     implementation(project(':Machine-Max'))
 }
+
+task copySubmoduleJars {
+    doLast {
+        def libsDir = file("${buildDir}/libs")
+        libsDir.mkdirs()
+
+        def sparkCoreDir = project(':Spark-Core').layout.buildDirectory.get().asFile
+        def machineMaxDir = project(':Machine-Max').layout.buildDirectory.get().asFile
+
+        def sparkCoreJar = file("${sparkCoreDir}/libs/SparkCore-1.21.1-neoforge-${project(':Spark-Core').property('mod_version')}.jar")
+        def machineMaxJar = file("${machineMaxDir}/libs/MachineMax-1.21.1-${project(':Machine-Max').property('mod_version')}.jar")
+
+        if (sparkCoreJar.exists()) {
+            copy {
+                from sparkCoreJar
+                into libsDir
+            }
+            println "Copied Spark-Core jar to build/libs"
+        }
+
+        if (machineMaxJar.exists()) {
+            copy {
+                from machineMaxJar
+                into libsDir
+            }
+            println "Copied Machine-Max jar to build/libs"
+        }
+    }
+}
+
+build.dependsOn(copySubmoduleJars)
