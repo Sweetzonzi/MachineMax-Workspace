@@ -97,6 +97,10 @@ compileKotlin {
 //确保星火修改代码，MM运行runClient能立即失效而不是报错
 runClient.dependsOn("compileKotlin")
 
+// 动态扫描 modules 目录下的子模块
+def moduleDirs = file('modules').listFiles()?.findAll { it.directory && it.name != '.git' } ?: []
+def subprojects = moduleDirs.collect { it.name }
+
 repositories {
     mavenLocal()
     mavenCentral()
@@ -114,12 +118,11 @@ repositories {
     maven { url = 'https://maven.ryanliptak.com/' }
     maven { url = 'https://maven.theillusivec4.top/' }
     maven { url = 'https://jitpack.io' }
-    flatDir { dirs 'modules/Machine-Max/libs', 'modules/Spark-Core/libs' }
+    flatDir { dirs subprojects.collect { "modules/${it}/libs" } }
 }
 
 dependencies {
-    implementation(project(':Spark-Core'))
-    implementation(project(':Machine-Max'))
+    subprojects.each { implementation(project(":${it}")) }
 }
 
 task copySubmoduleJars {
@@ -127,26 +130,25 @@ task copySubmoduleJars {
         def libsDir = file("${buildDir}/libs")
         libsDir.mkdirs()
 
-        def sparkCoreDir = project(':Spark-Core').layout.buildDirectory.get().asFile
-        def machineMaxDir = project(':Machine-Max').layout.buildDirectory.get().asFile
+        subprojects.each { subprojectName ->
+            def subproject = project(":${subprojectName}")
+            def subprojectDir = subproject.layout.buildDirectory.get().asFile
+            def submoduleLibsDir = file("${subprojectDir}/libs")
 
-        def sparkCoreJar = file("${sparkCoreDir}/libs/SparkCore-1.21.1-neoforge-${project(':Spark-Core').property('mod_version')}.jar")
-        def machineMaxJar = file("${machineMaxDir}/libs/MachineMax-1.21.1-${project(':Machine-Max').property('mod_version')}.jar")
-
-        if (sparkCoreJar.exists()) {
-            copy {
-                from sparkCoreJar
-                into libsDir
+            if (submoduleLibsDir.exists()) {
+                submoduleLibsDir.listFiles()?.findAll {
+                    it.name.endsWith('.jar') && 
+                    !it.name.endsWith('-sources.jar') &&
+                    !it.name.endsWith('-javadoc.jar') &&
+                    it.name.startsWith(subproject.property('build_name'))
+                }?.each { jarFile ->
+                    copy {
+                        from jarFile
+                        into libsDir
+                    }
+                    println "Copied ${subprojectName} jar: ${jarFile.name} to build/libs"
+                }
             }
-            println "Copied Spark-Core jar to build/libs"
-        }
-
-        if (machineMaxJar.exists()) {
-            copy {
-                from machineMaxJar
-                into libsDir
-            }
-            println "Copied Machine-Max jar to build/libs"
         }
     }
 }
