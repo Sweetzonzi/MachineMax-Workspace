@@ -101,6 +101,19 @@ runClient.dependsOn("compileKotlin")
 def moduleDirs = file('modules').listFiles()?.findAll { it.directory && it.name != '.git' } ?: []
 def subprojects = moduleDirs.collect { it.name }
 
+// 让子模块构建时同时生成 sources jar
+subprojects.each { subprojectName ->
+    def subproject = project(":${subprojectName}")
+    subproject.afterEvaluate {
+        if (subproject.tasks.findByName('sourcesJar')) {
+            subproject.tasks.jar.dependsOn('sourcesJar')
+        }
+        if (subproject.tasks.findByName('kotlinSourcesJar')) {
+            subproject.tasks.jar.dependsOn('kotlinSourcesJar')
+        }
+    }
+}
+
 repositories {
     mavenLocal()
     mavenCentral()
@@ -137,9 +150,7 @@ task copySubmoduleJars {
 
             if (submoduleLibsDir.exists()) {
                 submoduleLibsDir.listFiles()?.findAll {
-                    it.name.endsWith('.jar') && 
-                    !it.name.endsWith('-sources.jar') &&
-                    !it.name.endsWith('-javadoc.jar') &&
+                    it.name.endsWith('.jar') &&
                     it.name.startsWith(subproject.property('build_name'))
                 }?.each { jarFile ->
                     copy {
