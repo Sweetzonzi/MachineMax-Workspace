@@ -153,6 +153,10 @@ task copySubmoduleJars {
                     it.name.endsWith('.jar') &&
                     it.name.startsWith(subproject.property('build_name'))
                 }?.each { jarFile ->
+                    def targetFile = file("${libsDir}/${jarFile.name}")
+                    if (targetFile.exists()) {
+                        targetFile.delete()
+                    }
                     copy {
                         from jarFile
                         into libsDir
