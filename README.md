@@ -10,11 +10,10 @@
 
 
 
-| 模块名称        | 功能                                     | 仓库地址                                       |
-| ----------- | -------------------------------------- | ------------------------------------------ |
-| Machine-Max | 一款支持高度自定义的Minecraft载具模组，拥有拟真的物理交互      | https://github.com/Sweetzonzi/Machine-Max  |
-| Spark-Core  | 一款基于Minecraft的Lib模组，目标是在MC内打造一个专属的游戏引擎 | https://github.com/SolarMoonQAQ/Spark-Core |
-
+| 模块名称 (可点击访问仓库) | 介绍                                     | 职责   |
+| :--- |:---------------------------------------|:-----|
+| [Machine-Max](https://github.com/Sweetzonzi/Machine-Max) | 一款支持高度自定义的Minecraft载具模组，拥有拟真的物理交互      | 主体模组 |
+| [Spark-Core](https://github.com/SolarMoonQAQ/Spark-Core) | 一款基于Minecraft的Lib模组，目标是在MC内打造一个专属的游戏引擎 | 物理引擎 |
 
 
 ## 快速开始
