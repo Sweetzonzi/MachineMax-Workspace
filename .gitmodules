@@ -1,7 +1,7 @@
 [submodule "modules/Machine-Max"]
 	path = modules/Machine-Max
 	url = https://github.com/Sweetzonzi/Machine-Max.git
-	branch = 1.21.1Dev
+	branch = 1.21.1
 
 [submodule "modules/Spark-Core"]
 	path = modules/Spark-Core
