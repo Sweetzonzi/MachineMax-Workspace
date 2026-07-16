@@ -1,7 +1,12 @@
 [submodule "modules/Machine-Max"]
 	path = modules/Machine-Max
 	url = https://github.com/Sweetzonzi/Machine-Max.git
-	branch = 1.21.1Dev
+	branch = 1.21.1
+
+[submodule "modules/Machine-Max"]
+	path = modules/BallisticsFramework
+	url = https://github.com/Sweetzonzi/BallisticsFramework.git
+	branch = 1.21.1-neoforge
 
 [submodule "modules/Spark-Core"]
 	path = modules/Spark-Core
