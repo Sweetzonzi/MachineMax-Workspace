@@ -26,8 +26,8 @@
 
 ```bash
 
-git clone --recurse-submodules https://github.com/Sweetzonzi/MachineMax-Workspace.git
-cd MachineMax-Workspace
+  git clone --recurse-submodules https://github.com/Sweetzonzi/MachineMax-Workspace.git
+  cd MachineMax-Workspace
 ```
 
 ### 
@@ -38,16 +38,51 @@ cd MachineMax-Workspace
 
 ```bash
 
-# 进入项目根目录
-cd MachineMax-Workspace
-
-# ！重要步骤：初始化并拉取所有子模块
-git submodule update --init
-
-# 如果需要拉取的子模块内部还嵌套了子模块，请使用：
-# git submodule update --init --recursive
+  # 进入项目根目录
+  cd MachineMax-Workspace
+  
+  # ！重要步骤：初始化并拉取所有子模块
+  git submodule update --init
+  
+  # 如果需要拉取的子模块内部还嵌套了子模块，请使用：
+  # git submodule update --init --recursive
 ```
 
+### 遇到问题
+```bash
+  # 1. 先同步 .gitmodules 到本地配置
+  git submodule sync
+  
+  # 2. 初始化所有子模块
+  git submodule init
+  
+  # 3. 拉取子模块代码
+  git submodule update --init --recursive
+
+```
+### 还是有问题
+```bash
+  # 1. 删除现有的子模块目录
+  rm -r -force modules/Machine-Max
+  rm -r -force modules/BallisticsFramework
+  rm -r -force modules/Spark-Core
+
+  # 2. 删除 .git/modules 中的缓存
+  rm -r -force .git/modules
+
+  # 3. 重新添加所有子模块 如果你需要完整git提交记录这样操作
+  git submodule add -b 1.21.1 https://github.com/Sweetzonzi/Machine-Max.git modules/Machine-Max
+  git submodule add -b 1.21.1-neoforge https://github.com/Sweetzonzi/BallisticsFramework.git modules/BallisticsFramework
+  git submodule add -b 1.21.1-neoforge-reloadlistener https://github.com/SolarMoonQAQ/Spark-Core.git modules/Spark-Core
+
+  # 因为梯子速度最近很慢，我加了 --depth 1 浅层克隆更快拉取
+  git submodule add -b 1.21.1 --depth 1 https://github.com/Sweetzonzi/Machine-Max.git modules/Machine-Max
+  git submodule add -b 1.21.1-neoforge --depth 1 https://github.com/Sweetzonzi/BallisticsFramework.git modules/BallisticsFramework
+  git submodule add -b 1.21.1-neoforge-reloadlistener --depth 1 https://github.com/SolarMoonQAQ/Spark-Core.git modules/Spark-Core
+
+
+
+```
 ## 
 
 ## 构建与运行
