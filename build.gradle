@@ -1,5 +1,5 @@
 plugins {
-    id 'net.neoforged.moddev' version '1.0.14'
+    id 'net.neoforged.moddev' version '2.0.107'
     id 'org.jetbrains.kotlin.jvm' version '2.2.20'
 }
 
@@ -79,12 +79,13 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
-idea {
-    module {
-        downloadSources = true
-        downloadJavadoc = true
-    }
-}
+// todo 不知道为什么启用后无法正常构建，先注释掉
+//idea {
+//    module {
+//        downloadSources = true
+//        downloadJavadoc = true
+//    }
+//}
 
 kotlin {
     jvmToolchain(21)
@@ -130,6 +131,8 @@ repositories {
     maven { url = 'https://maven.tterrag.com/' }
     maven { url = 'https://maven.ryanliptak.com/' }
     maven { url = 'https://maven.theillusivec4.top/' }
+    maven { url = 'https://maven.createmod.net' } // Create, Ponder, Flywheel
+    maven { url = 'https://maven.ithundxr.dev/snapshots' } // Registrate (MC1.21+)
     maven { url = 'https://jitpack.io' }
     flatDir { dirs subprojects.collect { "modules/${it}/libs" } }
 }
